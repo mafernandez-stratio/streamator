@@ -4,7 +4,7 @@ import org.apache.kafka.clients.producer._
 import scala.concurrent.duration._
 
 // TODO: Allow chunck of data
-class Producer extends App {
+class Producer extends App with Sink {
 
   case class CommandLineOpts(
     inputFile: String = "/tmp/data.csv",
@@ -15,7 +15,7 @@ class Producer extends App {
   val parser = new scopt.OptionParser[CommandLineOpts]("streamator") {
     head("streamator")
 
-    opt[String]('i', "inputFile").action((x, c) =>
+    opt[String]('i', "inputFile").required.action((x, c) =>
       c.copy(inputFile = x)).text("Input file")
 
     opt[Boolean]('r', "random").action((x, c) =>
@@ -24,7 +24,7 @@ class Producer extends App {
     opt[Seq[Duration]]('p', "pause").action((x, c) =>
       c.copy(pause = x)).text("Pause time between every production. For fixed time, only one value is required. For random time, two values are required as an interval")
 
-    opt[String]('o', "outoutTopic").action((x, c) =>
+    opt[String]('o', "outoutTopic").required.action((x, c) =>
       c.copy(outoutTopic = x)).text("Output Kafka topic")
   }
 
