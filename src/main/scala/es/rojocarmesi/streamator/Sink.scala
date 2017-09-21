@@ -1,3 +1,12 @@
 package es.rojocarmesi.streamator
 
-trait Sink
+abstract class Sink(config: Map[String, String]){
+
+  def send(row: String)
+
+  def sendBatch(rows: Seq[String])
+
+  def close()
+
+}
+
