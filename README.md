@@ -2,7 +2,7 @@
 
 ## Description
 
-Very basic application to transform batch data (from a static source) into streaming data (to a streming sink) with a defined pause for every registry. 
+Very basic application to transform batch data (from a static source) into streaming data (to a streming sink) with a specific pause for every registry. 
 
 ## Example
 
